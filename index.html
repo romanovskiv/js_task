@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap"
+      rel="stylesheet" />
+    <style>
+      .hidden {
+        display: none;
+      }
+      .panel {
+        width: 25vw;
+        padding: 1em;
+        margin: 1em;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      #output {
+        display: none;
+      }
+      body {
+        font-family: 'Raleway', sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f5efe6;
+        font-weight: 300;
+      }
+      h1 {
+        font-weight: 400;
+      }
+      label {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      select {
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #num {
+        margin: 10px auto;
+        width: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #aebdca;
+      }
+
+      input[type='number']::-webkit-inner-spin-button,
+      input[type='number']::-webkit-outer-spin-button {
+        padding: 10px;
+      }
+      button {
+        width: 200px;
+        margin: 50px auto;
+        padding: 15px;
+        background-color: #fff;
+        border: none;
+        color: #000;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+      button::after {
+        box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px,
+          rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px,
+          rgb(255, 85, 85) 0px 0px 0px 15px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      button:hover::after {
+        opacity: 1;
+      }
+
+      button:hover {
+        box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px,
+          rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px,
+          rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px,
+          rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px,
+          rgb(255, 85, 85) 40px -40px;
+      }
+    </style>
+    <title>Ticket buy</title>
+  </head>
+  <body>
+    <h1>Покупка билетов</h1>
+    <section>
+      <label
+        >Выберите направление:
+        <select id="direction">
+          <option value="1">A &rarr; B</option>
+          <option value="2">B &rarr; A</option>
+          <option value="3">A &rarr; B &rarr; A</option>
+        </select>
+      </label>
+
+      <div class="panel" id="blockAB">
+        <label
+          >A &rarr; B
+          <select id="timesAB"></select>
+        </label>
+      </div>
+      <div class="panel" id="blockBA">
+        <label>
+          B &rarr; A
+          <select id="timesBA"></select>
+        </label>
+      </div>
+      <label for="num">Количество билетов</label>
+      <input
+        id="num"
+        type="number"
+        min="1"
+        max="50"
+        onkeyup="if(this.value<=0 ||
+      this.value>50){this.value= 1}"
+        required />
+      <button>Посчитать</button>
+      <div class="panel" id="output"></div>
+    </section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
